@@ -18,7 +18,11 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
-    "@ngrx/store": "^14.3.1",
+    "@ngneat/hot-toast": "^4.1.0",
+    "@ngneat/overview": "^3.0.0",
+    "@ngneat/transloco": "^4.1.1",
+    "@ngrx/effects": "^14.3.2",
+    "@ngrx/store": "^14.3.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
