@@ -8,6 +8,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
+import { authReducer } from './modules/auth/store/reducers';
+import { AuthEffects } from './modules/auth/store/effects';
 
 @NgModule({
   declarations: [
@@ -16,8 +18,8 @@ import { TranslocoRootModule } from './transloco-root.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot({auth:authReducer}, {}),
+    EffectsModule.forRoot([AuthEffects]),
     HotToastModule.forRoot(),
     HttpClientModule,
     TranslocoRootModule
