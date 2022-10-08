@@ -18,3 +18,18 @@ export const selectCurrentUser = createSelector(
     authState,
     (state) => state.currentUser
   );
+
+  export const selectTotalAmount = createSelector(
+    authState,
+    (state) => state.totalAmount
+  );
+
+  export const selectAddedItemsOnCart = createSelector(
+    authState,
+    (state) => state.addedItemsOnCart
+  );
+
+  export const selectTotalItemsOnCart = createSelector(
+    authState,
+    (state) => state.totalItemsOnCart
+  );

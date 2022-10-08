@@ -1,4 +1,5 @@
 import { createAction, props } from "@ngrx/store";
+import { CartItem } from "../models/addedItems";
 
 
 
@@ -24,3 +25,21 @@ export const loginFailure=createAction('login Failure',props<{error:string}>())
 export const logoutLoading=createAction('logout Loading');
 export const logoutSuccess=createAction('logout Success');
 export const logoutFailure=createAction('logout Failure',props<{error:string}>())
+
+
+//totalAmount
+export const totalAmountLoading=createAction('Total Amount loading');
+export const totalAmountSuccess=createAction('Total Amount success',props<{totalAmount:number}>());
+export const totalAmountFailure=createAction('Total Amount failure',props<{error:string}>());
+
+
+//addedItemsOnCart
+export const addedItemsOnCartLoading=createAction('added Items OnCart loading',props<{addedItemsOnCart:CartItem}>());
+export const addedItemsOnCartSuccess=createAction('added Items OnCart success',props<{addedItemsOnCart:CartItem}>());
+export const addedItemsOnCartFailure=createAction('added Items OnCart failure',props<{error:string}>());
+
+
+//totalItemsOnCart
+export const totalItemsOnCartLoading=createAction('total Items OnCart loading');
+export const totalItemsOnCartSuccess=createAction('total Items OnCart success',props<{totalItemsOnCart:number}>());
+export const totalItemsOnCartFailure=createAction('total Items OnCart failure',props<{error:string}>());

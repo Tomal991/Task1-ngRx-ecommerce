@@ -1,5 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import {
+  addedItemsOnCartFailure,
+  addedItemsOnCartLoading,
+  addedItemsOnCartSuccess,
   currentUserFailure,
   currentUserLoading,
   currentUserSuccess,
@@ -12,6 +15,12 @@ import {
   logoutFailure,
   logoutLoading,
   logoutSuccess,
+  totalAmountFailure,
+  totalAmountLoading,
+  totalAmountSuccess,
+  totalItemsOnCartFailure,
+  totalItemsOnCartLoading,
+  totalItemsOnCartSuccess,
 } from './actions';
 import { AuthState } from './state';
 
@@ -20,6 +29,9 @@ export const initialAuthState: AuthState = {
   error: null,
   currentUser: null,
   loggedIn: false,
+  totalAmount: null,
+  totalItemsOnCart: null,
+  addedItemsOnCart: null,
 };
 
 export const authReducer = createReducer(
@@ -40,8 +52,8 @@ export const authReducer = createReducer(
     loggedIn: false,
     error,
   })),
-  //currentUSer
 
+  //currentUSer
   on(currentUserLoading, (state) => ({ ...state, loading: true })),
 
   on(currentUserSuccess, (state, { currentUser }) => ({
@@ -91,6 +103,51 @@ export const authReducer = createReducer(
   on(logoutFailure, (state, { error }) => ({
     ...state,
     loading: false,
+    error,
+  })),
+
+  ///totalAmount
+  on(totalAmountLoading, (state) => ({ ...state, loading: true })),
+  on(totalAmountSuccess, (state, { totalAmount }) => ({
+    ...state,
+    loading: false,
+    totalAmount,
+    error: null,
+  })),
+  on(totalAmountFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    totalAmount: null,
+    error,
+  })),
+
+  //addedItemsOnCart
+  on(addedItemsOnCartLoading, (state) => ({ ...state, loading: true })),
+  on(addedItemsOnCartSuccess, (state, { addedItemsOnCart }) => ({
+    ...state,
+    loading: false,
+    addedItemsOnCart,
+    error: null,
+  })),
+  on(addedItemsOnCartFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    addedItemsOnCart: null,
+    error,
+  })),
+
+  //totalItemsOnCart
+  on(totalItemsOnCartLoading, (state) => ({ ...state, loading: true })),
+  on(totalItemsOnCartSuccess, (state, { totalItemsOnCart }) => ({
+    ...state,
+    loading: false,
+    totalItemsOnCart,
+    error: null,
+  })),
+  on(totalItemsOnCartFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    totalItemsOnCart: null,
     error,
   }))
 );
