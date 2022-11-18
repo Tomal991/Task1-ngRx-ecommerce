@@ -10,20 +10,21 @@ import { authReducer } from './store/reducers';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './store/effects';
-
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AuthComponent,
     LoginComponent,
     LogoutComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
-  
-  CommonModule,
+    CommonModule,
     AuthRoutingModule,
-    StoreModule.forFeature('auth',authReducer),
-    EffectsModule.forFeature([AuthEffects])
-  ]
+    StoreModule.forFeature('auth', authReducer),
+    EffectsModule.forFeature([AuthEffects]),
+    FormsModule,ReactiveFormsModule
+  ],
+  exports: [LoginComponent],
 })
-export class AuthModule { }
+export class AuthModule {}

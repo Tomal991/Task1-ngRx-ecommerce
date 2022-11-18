@@ -27,11 +27,18 @@ import { AuthState } from './state';
 export const initialAuthState: AuthState = {
   loading: false,
   error: null,
-  currentUser: null,
+  currentUser: {
+    userId: '',
+    name: '',
+    mobile: '',
+    email: '',
+    address: '',
+  },
   loggedIn: false,
   totalAmount: null,
   totalItemsOnCart: null,
   addedItemsOnCart: null,
+  loginResponse: {token: ''},
 };
 
 export const authReducer = createReducer(
@@ -73,10 +80,10 @@ export const authReducer = createReducer(
   //login
   on(loginLoading, (state) => ({ ...state, loading: true })),
 
-  on(loginSuccess, (state, { currentUser }) => ({
+  on(loginSuccess, (state, { loginResponse }) => ({
     ...state,
     loading: false,
-    currentUser,
+    loginResponse,
     loggedIn: true,
     error: null,
   })),
@@ -87,6 +94,7 @@ export const authReducer = createReducer(
     currentUser: null,
     loggedIn: false,
     error,
+    loginResponse:null
   })),
 
   //logout
@@ -98,6 +106,7 @@ export const authReducer = createReducer(
     currentUser: null,
     loggedIn: false,
     error: null,
+    loginResponse:null
   })),
 
   on(logoutFailure, (state, { error }) => ({

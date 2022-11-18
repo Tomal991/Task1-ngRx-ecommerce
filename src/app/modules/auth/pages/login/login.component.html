@@ -1,5 +1,25 @@
-<p>login works!</p>
-
-<div spinner *ngIf="loading$|async">
-
+<div class="p-2 flex justify-center">
+  <form
+    (ngSubmit)="$loginForm_OnSubmit(loginForm)"
+    [formGroup]="loginForm"
+  >
+    <h1 class="text-2xl mb-8">Sign In</h1>
+    <div class="flex flex-col space-y-4">
+      <input
+        placeholder="random@gmail.com"
+        formControlName="email"
+        type="text"
+      >
+      <input
+        placeholder="password"
+        formControlName="password"
+        type="password"
+      >
+    </div>
+    <button type="submit"
+      class="p-2 mt-4 bg-violet-500 text rounded text-white text-base"
+    >
+      Sign In
+    </button>
+  </form>
 </div>

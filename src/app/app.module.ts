@@ -10,6 +10,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 import { authReducer } from './modules/auth/store/reducers';
 import { AuthEffects } from './modules/auth/store/effects';
+import { AuthModule } from './modules/auth/auth.module';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import { AuthEffects } from './modules/auth/store/effects';
     EffectsModule.forRoot([AuthEffects]),
     HotToastModule.forRoot(),
     HttpClientModule,
-    TranslocoRootModule
+    TranslocoRootModule,
+    AuthModule,
+    FormsModule,
+    ReactiveFormsModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

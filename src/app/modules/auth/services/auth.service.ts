@@ -1,17 +1,18 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { CartItem } from '../models/addedItems';
+import { LoginRequest } from '../models/loginRequest';
+import { LoginResponse } from '../models/loginResponse';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor() {}
+  constructor(private http:HttpClient) {}
 
-  login(username: string, password: string): Observable<{ token: string }> {
-    return of({
-      token: '',
-    });
+  login(loginRequest:LoginRequest) {
+    return this.http.post('http://localhost:3000/users',loginRequest);
   }
 
   logout(): Observable<boolean> {

@@ -1,5 +1,8 @@
 import { createAction, props } from "@ngrx/store";
 import { CartItem } from "../models/addedItems";
+import { LoginRequest } from "../models/loginRequest";
+import { LoginResponse } from "../models/loginResponse";
+import { UserCredentials } from "../models/userCredentials";
 
 
 
@@ -11,13 +14,13 @@ export const loggedInFailure=createAction('[Auth] is logged failure',props<{erro
 
 //current user
 export const currentUserLoading=createAction('[Auth] current user loading');
-export const currentUserSuccess=createAction('[Auth] current user success',props<{currentUser:any}>());
+export const currentUserSuccess=createAction('[Auth] current user success',props<{currentUser:UserCredentials}>());
 export const currentUserFailure=createAction('[Auth] current user failure',props<{error:string}>());
 
 
 //login
-export const loginLoading=createAction('login Loading',props<{username:string,password:string}>());
-export const loginSuccess=createAction('login Success',props<{currentUser:any}>());
+export const loginLoading=createAction('login Loading',props<{loginRequest:LoginRequest}>());
+export const loginSuccess=createAction('login Success',props<{loginResponse:LoginResponse}>());
 export const loginFailure=createAction('login Failure',props<{error:string}>())
 
 

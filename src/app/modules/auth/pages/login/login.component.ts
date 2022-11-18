@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { LoginRequest } from '../../models/loginRequest';
+import { AuthService } from '../../services/auth.service';
 import { loginLoading } from '../../store/actions';
 import { selectIsLoading } from '../../store/selectors';
 import { AuthState } from '../../store/state';
@@ -9,18 +14,35 @@ import { AuthState } from '../../store/state';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-loading$=this.authStore.select(selectIsLoading);
+  loginForm: FormGroup;
 
-  constructor(private authStore:Store<AuthState>) { }
+  constructor(
+    private _fb: FormBuilder,
+    private stores: Store<AuthState>,
+    private _router: Router,
+    private auth: AuthService
+  ) {}
+
+  ngOnDestroy(): void {
+  
+  }
 
   ngOnInit(): void {
-  }
-  onLogin(){
-    const loginInfo={
-      username:"",
-      password:""
-    };
-    this.authStore.dispatch(loginLoading({username:loginInfo.username,password:loginInfo.password}))
+    this.loginForm = this._fb.group({
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+    });
   }
 
+  $loginForm_OnSubmit(form: FormGroup) {
+    const formValue = this.loginForm.value;
+    const loginRequest = {
+      ...new LoginRequest(),
+      ...formValue,
+    };
+    this.stores.dispatch(loginLoading({ loginRequest }));
+  }
 }
+
+
+
