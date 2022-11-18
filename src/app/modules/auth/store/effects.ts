@@ -20,11 +20,9 @@ export class AuthEffects {
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loginLoading),
-      mergeMap(({ loginRequest: loginRequest }) =>
-        this.authService.login(loginRequest).pipe(
+      mergeMap((loginRequest ) =>
+        this.authService.login(loginRequest.loginRequest).pipe(
           map((loginResponse: LoginResponse) => {
-            const { token } = loginResponse;
-            localStorage.setItem('token', token);
             this.hotToastService.success('Welcome!login succedded');
             return loginSuccess({loginResponse});
           }),
@@ -40,10 +38,10 @@ export class AuthEffects {
   cartItem$ = createEffect(() =>
     this.actions$.pipe(
       ofType(addedItemsOnCartLoading),
-      mergeMap(({ addedItemsOnCart }) =>
+      mergeMap(( {addedItemsOnCart} ) =>
         this.authService.addedItemsOnCart(addedItemsOnCart).pipe(
           map(() => {
-            return addedItemsOnCartSuccess({ addedItemsOnCart: null });
+            return addedItemsOnCartSuccess({ addedItemsOnCart });
           }),
           catchError((error) => {
             this.hotToastService.error(error);

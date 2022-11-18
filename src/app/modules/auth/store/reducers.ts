@@ -38,7 +38,7 @@ export const initialAuthState: AuthState = {
   totalAmount: null,
   totalItemsOnCart: null,
   addedItemsOnCart: null,
-  loginResponse: {token: ''},
+  loginResponse: {accessToken: ''},
 };
 
 export const authReducer = createReducer(
